@@ -1,0 +1,8 @@
+build/
+.idea/
+.gradle/
+cmake-build-*/
+*.kexe
+*.env
+*.tfvars
+*.tfstate*
