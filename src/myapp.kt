@@ -19,32 +19,25 @@ class myRandom() {
 
 fun main(args: Array<String>) {
 
-    val ddog = ddog()
+    val myapp1 = ddog()
+    myapp1.tag("nonprod")
+    myapp1.tag("myapp", "myapp1")
+    myapp1.gauge("web.unique", myRandom.nextInt(100) )
+    myapp1.gauge("web.hits", myRandom.nextInt(200) )
 
-    ddog.tag("myapp", "myapp1")
-    ddog.tag("nonprod")
-
-    ddog.gauge("web.unique", myRandom.nextInt(100) )
-    ddog.gauge("web.hits", myRandom.nextInt(200) )
+    // simulate a high hit event, when over 190 of 200
+    if ( myRandom.nextInt(210) > 190 )
+        myapp1.event("web.backend", "high hits on server1")
 
     val myapp2 = ddog()
-
-    myapp2.sample_rate = 1.0
-
-    myapp2.tag("myapp", "myapp2")
+    myapp2.sample_rate = 1.0    // sample_rate is how much we want to ddog agent push 0% to 100%
     myapp2.tag("nonprod")
-
+    myapp2.tag("myapp", "myapp2")
     myapp2.gauge("web.unique", myRandom.nextInt(100) )
     myapp2.gauge("web.hits", myRandom.nextInt(200) )
 
-    // simulate a high cpu event, when over 96 of 100
-    if ( myRandom.nextInt(100) > 96 ) {
-        val myapp3 = ddog()
-
-        myapp3.tag("myapp", "myapp3")
-        myapp3.tag("nonprod")
-
-        myapp3.event("web.backend", "high cpu on server3")
-    }
+    // simulate a high hit event, when over 190 of 200
+    if ( myRandom.nextInt(210) > 190 )
+        myapp2.event("web.backend", "high hits on server2")
 
 }

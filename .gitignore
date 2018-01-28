@@ -3,6 +3,3 @@ build/
 .gradle/
 cmake-build-*/
 *.kexe
-*.env
-*.tfvars
-*.tfstate*

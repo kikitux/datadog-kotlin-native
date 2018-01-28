@@ -1,4 +1,4 @@
-package toddog
+package socket
 
 import kotlinx.cinterop.*
 import platform.posix.*
